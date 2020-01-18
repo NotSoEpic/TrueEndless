@@ -1,0 +1,6 @@
+displayName = [i/s1:3103][c/FF0000:T][c/FF8800:r][c/EAFF00:u][c/5EFF00:e] [c/00FF2A:E][c/00FFB7:n][c/00BBFF:d][c/002FFF:l][c/5900FF:e][c/E600FF:s][c/FF008C:s][i/s1:3104]
+author = Motley
+version = 0.1
+hideCode = false
+includeSource = true
+homepage = https://github.com/NotSoEpic/TrueEndless
