@@ -19,6 +19,7 @@ namespace TrueEndless
         private bool HasInfinity() => Main.player[Main.myPlayer].GetModPlayer<EndlessPlayer>().infinity;
         private bool HasInfinity(Player player) => player.GetModPlayer<EndlessPlayer>().infinity;
         public bool IsEndlessAmmo(Item item) => (item.stack >= item.maxStack || item.stack >= 3996) && item.maxStack > 1 && item.ammo != AmmoID.None;
+        public bool IsEndlessPotion(Item item) => (item.stack >= item.maxStack || item.stack >= 30) && item.maxStack > 1 && item.buffType != 0;
         public bool IsEndlessConsumable(Item item) => (item.stack >= item.maxStack || item.stack >= 3996) && item.maxStack > 1 && (item.consumable || wasConsumable) && item.createTile == -1 && item.createWall == -1;
         public bool IsEndlessSpecific(Item item)
         {
@@ -48,7 +49,7 @@ namespace TrueEndless
                 item.stack = properStack;
                 properStack = 0;
             }
-            if ((Main.gameMenu || HasInfinity()) && GetInstance<EndlessConfigClient>().RainbowSprite && !IsEndlessExempt(item) && ((IsEndlessAmmo(item) && !item.notAmmo) || IsEndlessConsumable(item) || IsEndlessSpecific(item)))
+            if ((Main.gameMenu || HasInfinity()) && GetInstance<EndlessConfigClient>().RainbowSprite && !IsEndlessExempt(item) && ((IsEndlessAmmo(item) && !item.notAmmo) || IsEndlessConsumable(item) || IsEndlessPotion(item) || IsEndlessSpecific(item)))
             {
                 Texture2D texture = Main.itemTexture[item.type];
                 spriteBatch.Draw(texture, position, null, Main.DiscoColor, 0, origin, scale, SpriteEffects.None, 0f);
@@ -62,7 +63,7 @@ namespace TrueEndless
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             tooltips.RemoveAll(IsEndlessTooltip);
-            if (HasInfinity() && !IsEndlessExempt(item) && ((IsEndlessAmmo(item) && !item.notAmmo) || IsEndlessConsumable(item) || IsEndlessSpecific(item)))
+            if (HasInfinity() && !IsEndlessExempt(item) && ((IsEndlessAmmo(item) && !item.notAmmo) || IsEndlessConsumable(item) || IsEndlessPotion(item) || IsEndlessSpecific(item)))
             {
                 string text = "Endless";
                 if (GetInstance<EndlessConfigClient>().RainbowTooltip)
@@ -75,7 +76,7 @@ namespace TrueEndless
 
         public override void UpdateInventory(Item item, Player player)
         {
-            if (HasInfinity(player) && !IsEndlessExempt(item) && (IsEndlessConsumable(item) || IsEndlessSpecific(item)))
+            if (HasInfinity(player) && !IsEndlessExempt(item) && (IsEndlessConsumable(item) || IsEndlessPotion(item) || IsEndlessSpecific(item)))
             {
                 wasConsumable = true;
                 item.consumable = false;
@@ -85,7 +86,7 @@ namespace TrueEndless
                 item.consumable = true;
             }
 
-            if (HasInfinity(player) && !IsEndlessExempt(item) && IsEndlessConsumable(item) && item.buffType != 0)
+            if (HasInfinity(player) && !IsEndlessExempt(item) && (IsEndlessPotion(item) || IsEndlessConsumable(item) && item.buffType != 0))
             {
                 player.AddBuff(item.buffType, 2);
             }
