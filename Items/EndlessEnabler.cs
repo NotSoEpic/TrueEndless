@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using static Terraria.ModLoader.ModContent;
 
 namespace TrueEndless.Items
 {
@@ -59,15 +60,15 @@ namespace TrueEndless.Items
                 {
                     Main.NewText("Endless Items Disabled", new Color(242, 24, 24));
                 }
-                p.infinity = false;
             } else
             {
                 if (Main.myPlayer == player.whoAmI)
                 {
                     Main.NewText("Endless Items Enabled", new Color(24, 242, 24));
                 }
-                p.infinity = true;
             }
+            p.infinity = !p.infinity;
+            p.usedInfinity = true;
             return true;
         }
 
