@@ -6,20 +6,20 @@ It works by not actually adding new items!
 
 [c/AAFFAA:Step one:] Make the "Endless Enabler" item using various items at a crystal ball and use it
 [c/AAFFAA:Step two:] Have a max stack of ammo [i/s999:97] or consumable item [i/s30:292]
-[c/AAFFAA:Step three:] Watch that item become all cool and [i/s1:2870] rainbowy [i/s1:2966] (unless you don't like that, then disable it in the settings)
-Potions are even nice enough to [c/FFFF99:constantly give you] [c/FFFF99:their buff] without you having to drink it
+[c/AAFFAA:Step three:] Watch that item become all cool and [i/s1:2870] rainbowy [i/s1:2966]
+Potions are even nice enough to [c/FFFF99:constantly give you] [c/FFFF99:their buff] without you having to drink it. [c/FFFF99:Even from your piggy bank!]
 
 [c/FFFF99:Specifics:]
  [c/AAAAAA:Ammo:]
  - Is ammo
- - Max stack greater than one
+ - Isn't not ammo
  [c/FFAAAA:Consumables:]
  - Anything that doesn't place tiles or walls
- - Max stack greater than one
-
-[c/FFFF99:Other endless items:]
- - Regular ol' torches
- - Beach balls. Never enough beach balls
+ [c/8FC7FF:Potions:]
+ - Gives a buff
+ - Doesn't deal damage when swung
+ Anything you want:
+ - There's a cool config :)
 
 [c/DD0000:Known Incompatibilities:]
  - Potions that give multiple buffs wont constantly give you their buffs (I don't think theres any way to fix this besides a hard coded item by item basis)
