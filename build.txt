@@ -1,6 +1,6 @@
 displayName = [i/s1:3103]True Endless[i/s1:3104]
 author = Motley
-version = 0.2
+version = 0.2.1
 hideCode = false
 includeSource = true
 homepage = https://github.com/NotSoEpic/TrueEndless

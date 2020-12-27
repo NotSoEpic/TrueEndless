@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
 
 namespace TrueEndless
 {
+    // all of this is pretty self-explanatory
     [Label("Client Config")]
     public class EndlessConfigClient : ModConfig
     {
@@ -62,5 +64,12 @@ namespace TrueEndless
         [Label("Override Disable")]
         [Tooltip("Define items to not be endless here")]
         public List<ItemDefinition> OverrideDisable { get; set; } = new List<ItemDefinition>();
+
+        /*[Label("Buff Disable")]
+        [Tooltip("The buff granted by defined potions won't be constantly granted. You can still use the potion to receive the buff though")]
+        public List<ItemDefinition> BuffDisable = new List<ItemDefinition>()
+        {
+            new ItemDefinition(ItemID.InvisibilityPotion)
+        };*/
     }   
 }
