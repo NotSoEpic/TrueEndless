@@ -124,17 +124,6 @@ namespace TrueEndless
 
         public override void UpdateInventory(Item item, Player player)
         {
-            // if an item is endless, prevents if from being consumed
-            if (HasInfinity(player) && IsEndless(item) && (item.consumable || wasConsumable))
-            {
-                wasConsumable = true;
-                item.consumable = false; // just decides whether or not the item stack is decreased
-            }
-            else if (wasConsumable) // if the item loses its endless state for some reason and was consumable, it becomes consumable again
-            {
-                item.consumable = true;
-            }
-
             // does stuff with applying buffs over in EndlessPlayer.cs
             player.GetModPlayer<EndlessPlayer>().EndlessPotion(item);
         }
@@ -142,7 +131,20 @@ namespace TrueEndless
         // one of the cases where the stack size reset in PreDrawInInventory is used
         public override void GetHealLife(Item item, Player player, bool quickHeal, ref int healValue)
         {
-            properStack = item.stack;
+            if (HasInfinity(player) && IsEndless(item))
+            {
+                properStack = item.stack;
+                item.stack++;
+            }
+        }
+
+        public override void OnConsumeItem(Item item, Player player)
+        {
+            if (HasInfinity(player) && IsEndless(item))
+            {
+                properStack = item.stack;
+                item.stack++; // prevents item from being deleted if it has a maxStack of 1
+            }
         }
     }
 }
